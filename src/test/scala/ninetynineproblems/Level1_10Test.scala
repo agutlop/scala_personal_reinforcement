@@ -6,6 +6,7 @@ import org.scalatest._
 import ninetynineproblems.Level1_10._
 
 class Level1_10Test extends FlatSpec with Matchers {
+
   "The lastListElement method" should "return last element in a list" in {
     val lastElement = 9
     val list = 0 :: 1 :: 2 :: 3 :: 4 :: 5 :: 6 :: 7 :: 8 :: lastElement :: Nil
@@ -86,6 +87,15 @@ class Level1_10Test extends FlatSpec with Matchers {
     reverse(listReverse) shouldEqual list
     reverse(Nil) shouldEqual Nil
     noException should be thrownBy reverse(list)
+  }
+
+  "The isPalindrome method" should "return if the list is a palindrome" in {
+    val listNotPalindrome = 0 :: 1 :: 2 :: 3 :: 4 :: 5 :: 6 :: 7 :: 8 :: 9 :: Nil
+    val listPalindrome = 0 :: 1 :: 2 :: 3 :: 4 :: 4 :: 3 :: 2 :: 1 :: 0 :: Nil
+    isPalindrome(listPalindrome) shouldEqual true
+    isPalindrome(listNotPalindrome) shouldEqual false
+    isPalindrome(Nil) shouldEqual true
+    noException should be thrownBy isPalindrome(listPalindrome)
   }
 
 }
