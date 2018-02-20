@@ -98,4 +98,20 @@ class Level1_10Test extends FlatSpec with Matchers {
     noException should be thrownBy isPalindrome(listPalindrome)
   }
 
+  "The flattenList method" should "return the list flatten" in {
+    val list = List(1,2,List(3,4,5,List(6,7,8,(List(9)))))
+    val flattenedlist = List(1,2,3,4,5,6,7,8,9)
+    flattenList(list) shouldEqual flattenedlist
+    flattenList(Nil) shouldEqual Nil
+    noException should be thrownBy flattenList(list)
+  }
+
+  "The removeConsecutiveDuplicates method" should "return the list without consecutive duplicates" in {
+    val list = List(1,2,2,2,3,3,4,5,6,6,6,6,6,7,5,4,3,2,1,8,8,9)
+    val listNoduplicates = List(1,2,3,4,5,6,7,5,4,3,2,1,8,9)
+    removeConsecutiveDuplicates(list) shouldEqual listNoduplicates
+    removeConsecutiveDuplicates(Nil) shouldEqual Nil
+    noException should be thrownBy removeConsecutiveDuplicates(list)
+  }
+
 }

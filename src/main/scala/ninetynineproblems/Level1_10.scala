@@ -86,4 +86,35 @@ object Level1_10 {
     ls equals reverse(ls)
   }
 
+//  P07 (**) Flatten a nested list structure.
+//  Example:
+//    scala> flattenList(List(List(1, 1), 2, List(3, List(5, 8))))
+//  res0: List[Any] = List(1, 1, 2, 3, 5, 8)
+  def flattenList(ls: List[Any]): List[Any] =
+  ls flatMap {
+    case xs: List[_] => flattenList(xs)
+    case x => List(x)
+  }
+
+
+//  P08 (**) Eliminate consecutive duplicates of list elements.
+//    If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.
+//    Example:
+//
+//    scala> removeConsecutiveDuplicates(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+//  res0: List[Symbol] = List('a, 'b, 'c, 'a, 'd, 'e)
+  def removeConsecutiveDuplicates[A](ls: List[A]): List[A] =
+    ls.foldRight(List[A]()) { (h, r) =>
+      if (r.isEmpty || r.head != h) h :: r
+      else r
+    }
+
+//  P09 (**) Pack consecutive duplicates of list elements into sublists.
+//    If a list contains repeated elements they should be placed in separate sublists.
+//    Example:
+//
+//    scala> pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+//  res0: List[List[Symbol]] = List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e))
+  def pack[A](ls: List[A]): List[List[A]] = ???
+
 }
