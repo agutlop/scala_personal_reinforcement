@@ -114,4 +114,12 @@ class Level1_10Test extends FlatSpec with Matchers {
     noException should be thrownBy removeConsecutiveDuplicates(list)
   }
 
+  "The packList method" should "return the list ..." in {
+    val list = List(1,2,2,2,3,3,6,6,6,6,6,4,5,7,5,5)
+    val packedList = List(List(1),List(2,2,2),List(3,3),List(6,6,6,6,6),List(4),List(5),List(7),List(5,5))
+    packList(list) shouldEqual packedList
+    packList(Nil) shouldEqual List(Nil)
+    noException should be thrownBy packList(list)
+  }
+
 }

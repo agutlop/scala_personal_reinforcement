@@ -115,6 +115,33 @@ object Level1_10 {
 //
 //    scala> pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
 //  res0: List[List[Symbol]] = List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e))
-  def pack[A](ls: List[A]): List[List[A]] = ???
+  def packList[A](ls: List[A]): List[List[A]] = {
+    def packRec[A](ls:List[A],lastElem:A,lsInProgress:List[A],result:List[List[A]]):List[List[A]] = {
+      ls match {
+        case Nil => lsInProgress :: result
+        case x :: xs=> {
+          if (lastElem equals x) {
+            packRec(xs,x,x :: lsInProgress,result)
+          } else {
+            packRec(xs,x,x :: Nil,lsInProgress::result)
+          }
+        }
+      }
+    }
+    if (ls isEmpty){
+      List(ls)
+    } else {
+      reverse(packRec(ls tail,ls head, ls.head :: Nil, Nil))
+    }
+  }
+  //official solution, les complex than mine
+//  def pack[A](ls: List[A]): List[List[A]] = {
+//    if (ls.isEmpty) List(List())
+//    else {
+//      val (packed, next) = ls span { _ == ls.head }
+//      if (next == Nil) List(packed)
+//      else packed :: pack(next)
+//    }
+//  }
 
 }
